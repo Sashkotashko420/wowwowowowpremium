@@ -1,0 +1,128 @@
+kVars = {}
+kVars.closing = false
+kVars.varAimbot = true
+kVars.varAiming = false
+_G.closestZombie = nil
+
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+
+
+local MainGUI = Mercury:Create{
+    Name = "| Lxst Hub |",
+    Theme = Mercury.Themes.Dark,
+    Link = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+}
+
+MainGUI:Credit{
+	Name = "Bruno",
+	Description = "Main Scripter",
+	V3rm = "https://v3rmillion.net/member.php?action=profile&uid=2678717",
+	Discord = "LxstAppleDev#0715"
+}
+
+MainGUI:Credit{
+	Name = "Project Lxst",
+	Description = "Official Project Lxst Discord Server",
+	Discord = "discord.gg/vJP2CZqPfb"
+}
+
+local farmTab = MainGUI:Tab{
+	Name = "New Tab",
+	Icon = "rbxassetid://7733993147"
+}
+
+local aimbotTab = MainGUI:Tab{
+	Name = "New Tab",
+	Icon = "rbxassetid://7733765307"
+}
+
+aimbotTab:Toggle{
+	Name = "Toggle Aimbot",
+    StartingState = false,
+	Description = nil,
+	Callback = function(bool)
+        kVars.varAimbot = bool
+        if bool then fAimbot() end
+    end
+}
+
+function fAimbot()
+    spawn(function()
+        while kVars.varAimbot do
+            wait()
+            if kVars.closing then return end
+                local closestDistance = math.huge
+                for i,v in pairs(game:GetService("Workspace").Zombies:GetChildren()) do
+                    local castPoints = {game:GetService("Workspace").CurrentCamera.CFrame.Position, v.Head.CFrame.Position}
+                    local ignoreList = {}
+                    local obscured = workspace.CurrentCamera:GetPartsObscuringTarget(castPoints, ignoreList)
+                        if type(next(obscured)) == "nil" then
+                            if v:FindFirstChild("Head") and  v.Humanoid.Health ~= 0 then   
+                            local distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Head.Position).magnitude
+                                if distance < closestDistance then
+                                closestDistance = distance
+                                _G.closestZombie = v
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end
+
+kVars.UIS = game:GetService("UserInputService").InputBegan:Connect(function(input)
+    if game:GetService("Workspace").Map:FindFirstChild("Boundaries") then
+        for i,v in pairs(game:GetService("Workspace").Map.Boundaries:GetChildren()) do
+            v:Destroy()
+        end
+    end
+    if input.UserInputType == Enum.UserInputType.Keyboard then
+        if input.KeyCode == Enum.KeyCode.LeftShift and kVars.varShiftRun then 
+            game:GetService('Players').LocalPlayer.Character.Humanoid.WalkSpeed = 30 
+        end
+        if input.KeyCode == Enum.KeyCode.LeftControl then    
+            if kVars.varAimbot then
+                game.Players.LocalPlayer.CameraMode = "LockFirstPerson"
+                kVars.varAiming = true
+                local closest = nil
+                while wait() do
+                    game:GetService("Workspace").CurrentCamera.CameraType = "Custom"
+                    if _G.closestZombie ~= nil and _G.closestZombie:FindFirstChild("Head") then
+                        game:GetService("Workspace").CurrentCamera.CFrame = CFrame.lookAt(game:GetService("Workspace").CurrentCamera.CFrame.Position, _G.closestZombie.Head.CFrame.Position)
+                    end   
+                    if kVars.varAiming == false then return end
+                end
+            end
+        end
+    end
+end)
+
+kVars.UISEnd = game:GetService("UserInputService").InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Keyboard then
+        if input.KeyCode == Enum.KeyCode.LeftShift then 
+            game:GetService('Players').LocalPlayer.Character.Humanoid.WalkSpeed = 16 
+        end
+        if input.KeyCode == Enum.KeyCode.LeftControl then
+            kVars.varAiming = false
+        end
+    end
+end)
+
+farmTab:Toggle{
+	Name = "Power up Vacuum",
+	StartingState = false,
+	Description = nil,
+	Callback = function(bool)
+        kVars.varPowerUpVacuum = bool
+    end
+}
+
+kVars.PowerUpsVacuum = game:GetService("Workspace").PowerUps.ChildAdded:Connect(function()
+    if kVars.varPowerUpVacuum then
+        for i,v in pairs(game:GetService("Workspace").PowerUps:GetChildren()) do
+            firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 0)
+            wait(.01)
+            firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v, 1)
+        end
+    end
+end)
