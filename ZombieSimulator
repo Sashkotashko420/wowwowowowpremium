@@ -1,0 +1,154 @@
+kVars = {}
+
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+
+
+local MainGUI = Mercury:Create{
+    Name = "| Lxst Hub |",
+    Theme = Mercury.Themes.Dark,
+    Link = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+}
+
+MainGUI:Credit{
+	Name = "Bruno",
+	Description = "Main Scripter",
+	V3rm = "https://v3rmillion.net/member.php?action=profile&uid=2678717",
+	Discord = "LxstAppleDev#0715"
+}
+
+MainGUI:Credit{
+	Name = "Project Lxst",
+	Description = "Official Project Lxst Discord Server",
+	Discord = "discord.gg/vJP2CZqPfb"
+}
+
+local farmTab = MainGUI:Tab{
+	Name = "Farm",
+	Icon = "rbxassetid://10088146939"
+}
+
+local buyTab = MainGUI:Tab{
+	Name = "Buy",
+	Icon = "rbxassetid://7734056813"
+}
+
+local characterTab = MainGUI:Tab{
+	Name = "Character",
+	Icon = "rbxassetid://7992557358"
+}
+
+
+farmTab:Toggle{
+	Name = "Auto Eat",
+	StartingState = false,
+	Description = nil,
+	Callback = function(bool)
+        kVars.boolEat = bool
+        if bool then fEat() end
+    end
+}
+
+function fEat()
+    spawn(function()
+        while kVars.boolEat do
+            wait()
+            game:GetService("ReplicatedStorage").Events.Eat:FireServer()
+        end
+    end)
+end
+
+farmTab:Toggle{
+	Name = "Auto Sell",
+	StartingState = false,
+	Description = nil,
+	Callback = function(bool)
+        kVars.boolSell = bool
+        if bool then fSell() end
+    end
+}
+
+function fSell()
+    spawn(function()
+        while kVars.boolSell do
+            wait()
+            game:GetService("ReplicatedStorage").Events.Sell:FireServer()
+        end
+    end)
+end
+
+farmTab:Toggle{
+	Name = "Auto Buy Brains",
+	StartingState = false,
+	Description = nil,
+	Callback = function(bool)
+        kVars.boolBrains = bool
+        if bool then fBrains() end
+    end
+}
+
+function fBrains()
+    spawn(function()
+        while kVars.boolBrains do
+            wait()
+            game:GetService("ReplicatedStorage").Events.BuyAllBrain:FireServer()
+        end
+    end)
+end
+
+farmTab:Toggle{
+	Name = "Auto Buy Stomach",
+	StartingState = false,
+	Description = nil,
+	Callback = function(bool)
+        kVars.boolStomach = bool
+        if bool then fStomach() end
+    end
+}
+
+function fStomach()
+    spawn(function()
+        while kVars.boolStomach do
+            wait()
+            game:GetService("ReplicatedStorage").Events.BuyAllStorage:FireServer()
+        end
+    end)
+end
+
+farmTab:Toggle{
+	Name = "Auto Buy Gene",
+	StartingState = false,
+	Description = nil,
+	Callback = function(bool)
+        kVars.boolGene = bool
+        if bool then fGene() end
+    end
+}
+
+function fGene()
+    spawn(function()
+        while kVars.boolGene do
+            wait()
+            game:GetService("ReplicatedStorage").Events.BuyGene:FireServer()
+        end
+    end)
+end
+
+characterTab:Slider{
+	Name = "Walk Speed",
+	Default = 16,
+	Min = 0,
+	Max = 500,
+	Callback = function(num)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = num
+    end
+}
+
+characterTab:Slider{
+	Name = "Jump Power",
+	Default = 50,
+	Min = 0,
+	Max = 500,
+	Callback = function(num)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = num
+    end
+}
