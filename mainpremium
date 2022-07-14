@@ -1,0 +1,13 @@
+if game.PlaceId == 5714256147 then 
+
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Sashkotashko420/wowwowowowpremium/main/ZombieSimulator')))()
+
+elseif game.PlaceId == 4972091010 then
+
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Sashkotashko420/wowwowowowpremium/main/ZombieUprising'))()
+
+elseif game.PlaceId == 7277614831 then
+
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Sashkotashko420/wowwowowowpremium/main/CandyEatingSimulator'))()
+
+end
