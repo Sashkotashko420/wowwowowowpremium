@@ -1,0 +1,70 @@
+kVars = {}
+kVars.network = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("Network"))
+
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+
+
+local MainGUI = Mercury:Create{
+    Name = "| Lxst Hub |",
+    Theme = Mercury.Themes.Dark,
+    Link = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+}
+
+MainGUI:Credit{
+	Name = "Bruno",
+	Description = "Main Scripter",
+	V3rm = "https://v3rmillion.net/member.php?action=profile&uid=2678717",
+	Discord = "LxstAppleDev#0715"
+}
+
+MainGUI:Credit{
+	Name = "Project Lxst",
+	Description = "Official Project Lxst Discord Server",
+	Discord = "discord.gg/vJP2CZqPfb"
+}
+
+local farmTab = MainGUI:Tab{
+    Name = "Farming",
+    Icon = "rbxassetid://10088146939"
+}
+
+farmTab:Toggle{
+	Name = "Collect Candy",
+	StartingState = false,
+	Description = nil,
+	Callback = function(bool)
+        kVars.boolCollectCandy = bool
+        if bool then fCollectCandy() end
+    end
+}
+
+function fCollectCandy()
+    spawn(function()
+        while kVars.boolCollectCandy do
+            wait()
+            if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+                kVars.network:FireServer("Candy", game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Name)
+            end
+        end
+    end)
+end
+
+farmTab:Toggle{
+	Name = "Sell",
+	StartingState = false,
+	Description = nil,
+	Callback = function(bool)
+        kVars.boolSell = bool
+        if bool then fSell() end
+    end
+}
+
+function fSell()
+    spawn(function()
+        while kVars.boolSell do
+            wait()
+            firetouchinterest(game.Players.LocalPlayer.Character.LeftFoot,game:GetService("Workspace").Activations.SpawnSell.Touch,0)
+            firetouchinterest(game.Players.LocalPlayer.Character.LeftFoot,game:GetService("Workspace").Activations.SpawnSell.Touch,1)
+        end
+    end)
+end
