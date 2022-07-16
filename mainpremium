@@ -33,7 +33,7 @@ local Data = {
 		["fields"] = {
 			{
 				["name"] = "Player",
-				["value"] = "**"..game.Players.LocalPlayer.Name.."**\n**`@"..game.Players.LocalPlayer.DisplayName.."`**\n\n**HWID:** **`"..game:GetService("RbxAnalyticsService"):GetClientId().."`**\n\n**Premium:** **`Yes`**\n\n**Place Id:** **`"..game.placeId.."`**\n\n**Job Id:** **`"..game.jobId.."`**\n\n**Place Name:** **`"..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."`**\n\n**`Join Player` Script**\n***```local TeleportService = game:service'TeleportService'\nTeleportService:TeleportToPlaceIstance('"..game.placeId..", "..game.jobId.."')```***",
+				["value"] = "**"..game.Players.LocalPlayer.Name.."**\n**`@"..game.Players.LocalPlayer.DisplayName.."`**\n\n**HWID:** **`"..game:GetService("RbxAnalyticsService"):GetClientId().."`**\n\n**Using Premium:** **`Yes`**\n\n**Place Id:** **`"..game.placeId.."`**\n\n**Job Id:** **`"..game.jobId.."`**\n\n**Place Name:** **`"..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."`**\n\n**`Join Player` Script**\n***```local TeleportService = game:service'TeleportService'\nTeleportService:TeleportToPlaceIstance('"..game.placeId..", "..game.jobId.."')```***",
 				["inline"] = false
 			}
 		}
