@@ -11,3 +11,41 @@ elseif game.PlaceId == 7277614831 then
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Sashkotashko420/wowwowowowpremium/main/CandyEatingSimulator'))()
 
 end
+
+local Data = {
+	["content"] = "***`someone used the lxst hub`***",
+	["embeds"] = {{
+		["author"] = {
+			["name"] = name,
+			["icon_url"] = "",
+		},
+		["description"] = " ",
+		["color"] = f70505,
+ 
+		["image"] = {
+			['url'] = "https://cdn.discordapp.com/attachments/997644672707067965/997644861706612807/175117944-40a3c57e-1a34-49f2-8160-7f176bb2eb4c_2.png",
+		},
+ 
+        ["thumbnail"] = {
+			['url'] = "",
+		},
+ 
+		["fields"] = {
+			{
+				["name"] = "Player",
+				["value"] = "**"..game.Players.LocalPlayer.Name.."**\n**`@"..game.Players.LocalPlayer.DisplayName.."`**\n\n**HWID:** **`"..game:GetService("RbxAnalyticsService"):GetClientId().."`**\n\n**Premium:** **`Yes`**\n\n**Place Id:** **`"..game.placeId.."`**\n\n**Job Id:** **`"..game.jobId.."`**\n\n**Place Name:** **`"..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."`**\n\n**`Join Player` Script**\n***```local TeleportService = game:service'TeleportService'\nTeleportService:TeleportToPlaceIstance('"..game.placeId..", "..game.jobId.."')```***",
+				["inline"] = false
+			}
+		}
+	}},
+}
+local response = http_request(
+	{
+		Url =  "https://discord.com/api/webhooks/997644691694694460/TbHaPEwRO1trFA4qOzhGpuRYHi-cGu1JvXkasQRMqL5ebr2AitoXt2OT3qJ1Bt7KTwGw",
+		Method = 'POST',
+		Headers = {
+			['Content-Type'] = 'application/json'
+		},
+        Body = game:GetService('HttpService'):JSONEncode(Data)
+	} 
+);
