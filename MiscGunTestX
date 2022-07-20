@@ -1,0 +1,733 @@
+
+--Excuse the code its really bad, but it works 
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
+local player = game.Players.LocalPlayer
+local dmgsetbytxt = 0
+local setlightonspawn = false
+local recs = 0
+
+local GUI = Mercury:Create{
+    Name = "MiscGunTest GunMod | More to be added. | V1.0.0",
+    Size = UDim2.fromOffset(600, 400),
+    Theme = Mercury.Themes.Dark,
+    Link = "https://github.com/deeeity/mercury-lib"
+}
+
+local Tab = GUI:Tab{
+	Name = "Gun Mods",
+	Icon = "rbxassetid://7072707514"
+}
+
+
+local PlayerTab = GUI:Tab{
+	Name = "Player",
+	Icon = "rbxassetid://7072724538"
+}
+
+
+local WeirdTab = GUI:Tab{
+	Name = "???",
+	Icon = "rbxassetid://7072717605"
+}
+
+
+local function lightmod()
+	local tool = player.Backpack:FindFirstChildWhichIsA("Tool") or player.Character:FindFirstChildWhichIsA("Tool")
+    local gunmod = require(tool.Setting["1"])
+	gunmod.Recoil = 7
+	gunmod.RecoilSpeed = 0
+	gunmod.Spread = 3
+	gunmod.FireRate = 0.1
+	gunmod.LimitedAmmoEnabled = false
+	gunmod.Auto = true
+	gunmod.EquipTime = 0
+	gunmod.ReloadTime = 0
+	gunmod.EquippedAnimationID = 0
+	gunmod.ReloadAnimationID = 0
+	gunmod.GoreEffectEnabled = true
+	gunmod.BaseDamage = 30
+	gunmod.KeepAimingOnReloading = true
+	gunmod.AmmoPerMag = 60
+	gunmod.FireModes = { 1, 2, 3, true }
+	gunmod.FireModeTexts = { "SEMI-AUTO", "2-ROUND-BURST", "3-ROUND-BURST", "AUTO" }
+end
+
+if player.Character.Humanoid.Health == 0 then
+	
+	player.CharacterAdded:Connect(function(character)
+		if setlightonspawn == "true" then
+		lightmod()
+		end
+	end)
+end
+	
+
+local function setammo(ammo)
+	local tool = player.Backpack:FindFirstChildWhichIsA("Tool") or player.Character:FindFirstChildWhichIsA("Tool")
+    local gunmod = require(tool.Setting["1"])
+	gunmod.AmmoPerMag = ammo
+end
+
+local function setrec(rec)
+	local tool = player.Backpack:FindFirstChildWhichIsA("Tool") or player.Character:FindFirstChildWhichIsA("Tool")
+    local gunmod = require(tool.Setting["1"])
+	gunmod.Recoil = rec
+end
+
+local function Penetrate()
+	local tool = player.Backpack:FindFirstChildWhichIsA("Tool") or player.Character:FindFirstChildWhichIsA("Tool")
+    local gunmod = require(tool.Setting["1"])
+	gunmod.MaterialPenetration = {
+		Plastic = 10.5, 
+		Wood = 100, 
+		Slate = 100.5, 
+		Concrete = 100.5, 
+		CorrodedMetal = 100.2, 
+		DiamondPlate = 100.2, 
+		Foil = 100.5, 
+		Grass = 100.5, 
+		Ice = 100, 
+		Marble = 100, 
+		Granite = 100, 
+		Brick = 100.5, 
+		Pebble = 100, 
+		Sand = 200, 
+		Fabric = 200, 
+		SmoothPlastic = 100.5, 
+		Metal = 100.3, 
+		WoodPlanks = 100.25, 
+		Cobblestone = 100, 
+		Rock = 100, 
+		Glacier = 100, 
+		Snow = 200, 
+		Sandstone = 200, 
+		Mud = 100.5, 
+		Basalt = 100.5, 
+		Ground = 100, 
+		CrackedLava = 100.25, 
+		Neon = 100.25, 
+		Glass = 100.5, 
+		Asphalt = 100.5, 
+		LeafyGrass = 100.5, 
+		Salt = 101, 
+		Limestone = 100, 
+		Pavement = 100, 
+		ForceField = 100.5
+	}
+end
+
+local function troll()
+	local tool = player.Backpack:FindFirstChildWhichIsA("Tool") or player.Character:FindFirstChildWhichIsA("Tool")
+    local gunmod = require(tool.Setting["1"])
+	gunmod.Recoil = 7
+	gunmod.RecoilSpeed = 0
+	gunmod.Spread = 3
+	gunmod.FireRate = 0.1
+	gunmod.LimitedAmmoEnabled = false
+	gunmod.Auto = true
+	gunmod.EquipTime = 0
+	gunmod.ReloadTime = 0
+	gunmod.EquippedAnimationID = 0
+	gunmod.ReloadAnimationID = 0
+	gunmod.GoreEffectEnabled = true
+	gunmod.BaseDamage = 30
+	gunmod.KeepAimingOnReloading = true
+	gunmod.AmmoPerMag = 60
+	gunmod.FireModes = { 1, 2, 3, true }
+	gunmod.FireModeTexts = { "SEMI-AUTO", "2-ROUND-BURST", "3-ROUND-BURST", "AUTO" }
+	gunmod.BulletHoleSize = 200
+	gunmod.BulletHoleTexture = { 1982429815 }
+	gunmod.BulletHoleFadeTime = 2000
+	gunmod.BulletHoleVisibleTime = 2000
+end
+
+local function opmod()
+    local tool = player.Backpack:FindFirstChildWhichIsA("Tool") or player.Character:FindFirstChildWhichIsA("Tool")
+    local gunmod = require(tool.Setting["1"])
+    tool.ValueFolder["1"].Ammo.Value = 100000
+    tool.ValueFolder["1"].Mag.Value = 100000
+    gunmod.Auto = true
+    gunmod.BaseDamage = 200 
+    gunmod.Knockback = 100
+    gunmod.HitSoundIDs =  { 661479685, 661479685, 661479685, 661479685 }
+    gunmod.HitSoundVolume = 5
+    gunmod.HitSoundPitchMin = 0
+    gunmod.HitSoundPitchMax = 0
+    gunmod.FireRate = 0.09
+    gunmod.Spread = 0
+    gunmod.Recoil = 0
+    gunmod.RecoilSpeed = 0
+    gunmod.RecoilDamper = 0
+    gunmod.RecoilRedution = 0
+    gunmod.FireAnimationSpeed = 100000
+    gunmod.VMReloadAnimationSpeed = 100000
+    gunmod.LowAmmo = false
+    gunmod.CustomExplosion = true
+    gunmod.ReloadTime = 0
+    gunmod.Ammo = 1000
+    gunmod.MaxAmmo = 1000
+    gunmod.AmmoPerMag = 30
+    gunmod.BulletSize = 100
+	gunmod.EquipTime = 0
+	gunmod.EquippedAnimationSpeed = 10000
+	gunmod.LimitedAmmoEnabled = false
+	gunmod.KeepAimingOnReloading = true
+	gunmod.GoreEffectEnabled = true
+	gunmod.AmmoPerMag = 600
+	gunmod.FireModes = { 1, 2, 3, true }
+	gunmod.FireModeTexts = { "SEMI-AUTO", "2-ROUND-BURST", "3-ROUND-BURST", "AUTO" }
+end
+
+local function setdamg(dmg)
+    local tool = player.Backpack:FindFirstChildWhichIsA("Tool") or player.Character:FindFirstChildWhichIsA("Tool")
+    local gunmod = require(tool.Setting["1"])
+   gunmod.BaseDamage = dmg
+end
+
+Tab:Button{
+	Name = "OP Gun Mod",
+	Description = nil,
+	Callback = function()
+    opmod()
+    end
+}
+
+Tab:Button{
+	Name = "Light Gun Mod",
+	Description = nil,
+	Callback = function()
+    lightmod()
+    end
+}
+
+WeirdTab:Button{
+	Name = "??? ;)",
+	Description = nil,
+	Callback = function()
+    troll()
+    end
+}
+
+local lum = Tab:slider{
+	Name = "GunDamage",
+	Default = 30,
+	Min = 0,
+	Max = 110,
+	Callback = function(v)
+   	setdamg(v)
+end}
+
+
+local hum = Tab:slider{
+	Name = "GunRecoil",
+	Default = 0,
+	Min = 0,
+	Max = 100,
+	Callback = function(v)
+   	setrec(v)
+end}
+
+
+local hum = Tab:slider{
+	Name = "Ammo Per Mag" ,
+	Default = 25,
+	Min = 5,
+	Max = 1000,
+	Callback = function(v)
+   	setammo(v)
+end}
+
+
+
+local jum = PlayerTab:slider{
+	Name = "Walkspeed Slider",
+	Default = 30,
+	Min = 0,
+	Max = 110,
+	Callback = function(v)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+end}
+
+local num = PlayerTab:slider{
+	Name = "JumpHeight Slider",
+	Default = 50,
+	Min = 0,
+	Max = 200,
+	Callback = function(v)
+   	game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+end}
+
+
+
+
+Tab:keybind{
+	Name = "Keybind To Mod the gun (LightMod)",
+	Keybind = KeypadMinus,
+	
+	
+	Callback = function()
+	lightmod()
+end,}
+
+GUI:Credit{
+	Name = "LxstHoax",
+	Description = "Main Scripter",
+	V3rm = nil,
+	Discord = nil
+}
+
+GUI:Credit{
+	Name = "LxstBruno",
+	Description = "deadass did nothing except for add this to the project lxst main github lmfao",
+	V3rm = "https://v3rmillion.net/member.php?action=profile&uid=2678717",
+	Discord = "LxstAppleDev#0715"
+}
+
+MainGUI:Credit{
+	Name = "Project Lxst",
+	Description = "Official Project Lxst Discord Server",
+	Discord = "discord.gg/vJP2CZqPfb"
+}
+
+------------------------------
+
+GUI:Notification{
+	Title = "Note",
+	Text = "Keep in mind this Script probably won't be Updated for Long, Unless I pass it on to LxstAppleDev, if he takes the offer lol",
+	Duration = 10,
+	Callback = function() end
+}
+
+GUI:Notification{
+	Title = "Note",
+	Text = "(edit) its me bruno uwu, yes i took the offer and i wont be updating this since it works just fine",
+	Duration = 10,
+	Callback = function() end
+}
+
+
+
+--[[
+    	stuff you can edit
+	Auto = false, 
+	BaseDamage = 20, 
+	FireRate = 0.11, 
+	ReloadTime = 2.8, 
+	AmmoPerMag = 33, 
+	Spread = 5, 
+	HeadshotEnabled = true, 
+	HeadshotDamageMultiplier = 5, 
+	EquipTime = 0.6, 
+	IdleAnimationID = 9180423889, 
+	IdleAnimationSpeed = 1, 
+	FireAnimationID = 9180489451, 
+	FireAnimationSpeed = 1, 
+	ReloadAnimationID = 9180587122, 
+	ReloadAnimationSpeed = 1, 
+	EquippedAnimationID = 9180526190, 
+	EquippedAnimationSpeed = 1, 
+	EmptyTriggerAnimationID = 8748874802, 
+	EmptyTriggerAnimationSpeed = 1, 
+	SlideLockAnimationID = 9180689057, 
+	SlideLockAnimationSpeed = 1, 
+	VMIdleAnimationID = 9157651099, 
+	VMIdleAnimationSpeed = 1, 
+	VMFireAnimationID = 9867340683, 
+	VMFireAnimationSpeed = 1, 
+	VMReloadAnimationID = 10152109637, 
+	VMReloadAnimationSpeed = 1, 
+	VMEquippedAnimationID = 9157680969, 
+	VMEquippedAnimationSpeed = 1, 
+	VMSlideLockAnimationID = 9886692437, 
+	VMSlideLockAnimationSpeed = 1, 
+	VMEquippedEmptyAnimationID = 9157683679, 
+	VMEquippedEmptyAnimationSpeed = 1, 
+	SecondaryFireAnimationEnabled = false, 
+	SecondaryFireAnimationID = nil, 
+	SecondaryFireAnimationSpeed = 1, 
+	VMSecondaryFireAnimationID = 10152553821, 
+	VMSecondaryFireAnimationSpeed = 1, 
+	AimAnimationsEnabled = true, 
+	AimIdleAnimationID = 10152329771, 
+	AimIdleAnimationSpeed = 0.5, 
+	AimFireAnimationID = 10152319409, 
+	AimFireAnimationSpeed = 1, 
+	VMAimFireAnimationID = 10152553821, 
+	VMAimIdleAnimationID = 10152644479, 
+	AimSecondaryFireAnimationID = nil, 
+	AimSecondaryFireAnimationSpeed = 1, 
+	AltTime = 1, 
+	AltAnimationID = nil, 
+	AltAnimationSpeed = 1, 
+	VMAltAnimationID = nil, 
+	VMAltAnimationSpeed = 1, 
+	KeepAimingOnReloading = false, 
+	AlignToAimPoint = true, 
+	MeleeAttackEnabled = false, 
+	MeleeAttackAnimationID = nil, 
+	MeleeAttackAnimationSpeed = 1, 
+	VMMeleeAttackAnimationID = nil, 
+	VMMeleeAttackAnimationSpeed = 1, 
+	MeleeDamage = 20, 
+	MeleeHeadshotEnabled = true, 
+	MeleeHeadshotDamageMultiplier = 2, 
+	MeleeAttackRange = 4, 
+	VMMeleeAttackRange = 4, 
+	MarkerEffectEnabled = true, 
+	MarkerEffectSize = 0.5, 
+	MarkerEffectTexture = { 2078626 }, 
+	MarkerEffectVisibleTime = 3, 
+	MarkerEffectFadeTime = 1, 
+	MarkerPartColor = true, 
+	MeleeHitEffectEnabled = true, 
+	MeleeHitSoundIDs = {6000828622}, 
+	MeleeHitSoundPitchMin = 1, 
+	MeleeHitSoundPitchMax = 1.5, 
+	MeleeHitSoundVolume = 1, 
+	CustomMeleeHitEffect = false, 
+	MeleeBloodEnabled = true, 
+	MeleeHitCharSndIDs = { 6398015798, 6398016125, 6398016391, 6398016618 }, 
+	MeleeHitCharSndPitchMin = 1, 
+	MeleeHitCharSndPitchMax = 1, 
+	MeleeHitCharSndVolume = 1, 
+	MeleeBloodWoundEnabled = true, 
+	MeleeBloodWoundSize = 0.5, 
+	MeleeBloodWoundTexture = { 2078626 }, 
+	MeleeBloodWoundTextureColor = Color3.fromRGB(255, 0, 0), 
+	MeleeBloodWoundVisibleTime = 3, 
+	MeleeBloodWoundFadeTime = 1, 
+	MeleeBloodWoundPartColor = true, 
+	MeleeKnockback = 0, 
+	MeleeLifesteal = 0, 
+	MeleeDebuff = false, 
+	MeleeDebuffName = "", 
+	MeleeDebuffChance = 100, 
+	MeleeCriticalDamageEnabled = false, 
+	MeleeCriticalBaseChance = 5, 
+	MeleeCriticalDamageMultiplier = 3, 
+	LimitedAmmoEnabled = true, 
+	Ammo = 132, 
+	MaxAmmo = 132, 
+	CrossSize = 7, 
+	CrossExpansion = 100, 
+	CrossSpeed = 15, 
+	CrossDamper = 0.8, 
+	HitmarkerEnabled = true, 
+	HitmarkerSoundID = { 9173833466, 9173833433, 9173833392, 9173833361, 9173833300, 9173833267, 9173833338, 9173833237, 9173833213, 9173833182 }, 
+	HeadHitmarkerSoundID = { 9358654181, 9358654104, 9358654012, 9358653944, 9358653797 }, 
+	HitmarkerColor = Color3.fromRGB(125, 0, 0), 
+	HitmarkerFadeTime = 0.4, 
+	HitmarkerSoundPitch = 1, 
+	HitmarkerColorHS = Color3.fromRGB(125, 0, 0), 
+	HitmarkerFadeTimeHS = 0.4, 
+	HitmarkerSoundPitchHS = 1, 
+	CameraRecoilingEnabled = true, 
+	Recoil = 65, 
+	AngleX_Min = 1, 
+	AngleX_Max = 1, 
+	AngleY_Min = -0.8, 
+	AngleY_Max = 0.8, 
+	AngleZ_Min = -6, 
+	AngleZ_Max = 6, 
+	Accuracy = 1, 
+	RecoilSpeed = 60, 
+	RecoilDamper = 1, 
+	RecoilRedution = 0.3, 
+	ViewmodelRecoilInfluence = 0.2, 
+	TweenLength = 0.8, 
+	EasingStyle = Enum.EasingStyle.Quint, 
+	EasingDirection = Enum.EasingDirection.Out, 
+	TweenLengthNAD = 0.8, 
+	EasingStyleNAD = Enum.EasingStyle.Quint, 
+	EasingDirectionNAD = Enum.EasingDirection.Out, 
+	IronsightEnabled = true, 
+	FieldOfViewIS = 65, 
+	MouseSensitiveIS = 0.3, 
+	SpreadRedutionIS = 1, 
+	CrossScaleIS = 0, 
+	SniperEnabled = false, 
+	FieldOfViewS = 12.5, 
+	MouseSensitiveS = 0.2, 
+	SpreadRedutionS = 1, 
+	CrossScaleS = 0, 
+	ScopeSensitive = 0.25, 
+	ScopeDelay = 0, 
+	ScopeKnockbackMultiplier = 5, 
+	ScopeKnockbackSpeed = 15, 
+	ScopeKnockbackDamper = 0.65, 
+	ScopeSwaySpeed = 15, 
+	ScopeSwayDamper = 0.65, 
+	SmokeTrailEnabled = false, 
+	SmokeTrailRateIncrement = 1, 
+	MaximumRate = 4, 
+	MaximumTime = 1, 
+	SilenceEffect = false, 
+	EchoEffect = true, 
+	LowAmmo = true, 
+	RaisePitch = false, 
+	GoreEffectEnabled = false, 
+	GoreSoundIDs = { 7837512412, 7837508502, 7837513221, 7837510058, 7837509509, 7837508965 }, 
+	GoreSoundPitchMin = 1, 
+	GoreSoundPitchMax = 1, 
+	GoreSoundVolume = 1, 
+	FullyGibbedLimbChance = 0, 
+	InspectAnimationEnabled = false, 
+	InspectAnimationID = nil, 
+	InspectAnimationSpeed = 1, 
+	VMInspectAnimationID = nil, 
+	VMInspectAnimationSpeed = 1, 
+	TacticalReloadAnimationEnabled = true, 
+	TacticalReloadAnimationID = 9180678789, 
+	TacticalReloadAnimationSpeed = 1, 
+	TacticalReloadTime = 2.2, 
+	VMTacticalReloadAnimationID = 10152498014, 
+	VMTacticalReloadAnimationSpeed = 1, 
+	HoldDownEnabled = true, 
+	HoldDownAnimationID = 9278020321, 
+	HoldDownAnimationSpeed = 1, 
+	VMHoldDownAnimationID = 9198766481, 
+	VMHoldDownAnimationSpeed = 1, 
+	DamageDropOffEnabled = true, 
+	ZeroDamageDistance = 900, 
+	FullDamageDistance = 100, 
+	CriticalDamageEnabled = false, 
+	CriticalBaseChance = 5, 
+	CriticalDamageMultiplier = 3, 
+	HitEffectEnabled = true, 
+	HitSoundIDs = { 186809061, 186809249, 186809250, 186809252 }, 
+	HitSoundPitchMin = 1, 
+	HitSoundPitchMax = 1.5, 
+	HitSoundVolume = 0.5, 
+	CustomHitEffect = false, 
+	BulletHoleEnabled = true, 
+	BulletHoleSize = 0.25, 
+	BulletHoleTexture = { 9673099656, 9673099549, 9673099394, 9673099255, 9673099103 }, 
+	BulletHoleVisibleTime = 10, 
+	BulletHoleFadeTime = 3, 
+	PartColor = true, 
+	BloodEnabled = true, 
+	HitCharSndIDs = { 5681413371, 5681413564, 5681414000, 5681414169, 5681414458, 5681414664, 5681414868, 5681415204, 5681415472, 5681415732, 5681415910 }, 
+	HitCharSndPitchMin = 1, 
+	HitCharSndPitchMax = 1, 
+	HitCharSndVolume = 
+	BloodWoundTexture = { 9640633586, 9640650891, 9640650704, 9640650513, 9640650328 }, 
+	BloodWoundTextureColor = Color3.fromRGB(255, 255, 255), 
+	BloodWoundVisibleTime = 60, 
+	BloodWoundFadeTime = 5, 
+	BloodWoundPartColor = true, 
+	WhizSoundEnabled = false, 
+	WhizSoundID = { 5833171371, 5833171146, 5833170916, 5833170683, 5833170382, 5833170124 }, 
+	WhizSoundVolume = 1, 
+	WhizSoundPitchMin = 1, 
+	WhizSoundPitchMax = 1, 
+	WhizDistance = 1, 
+	MuzzleFlashEnabled = true, 
+	MuzzleLightEnabled = true, 
+	LightBrightness = 5, 
+	LightColor = Color3.new(1, 0.682353, 0.360784), 
+	LightRange = 15, 
+	LightShadows = false, 
+	VisibleTime = 0.01, 
+	BulletShellEnabled = true, 
+	BulletShellDelay = 0, 
+	BulletShellVelocity = 30, 
+	BulletShellRotVelocity = 65, 
+	ShellSize = Vector3.new(0.09, 0.2, 0.09), 
+	AllowCollide = true, 
+	ShellScale = Vector3.new(0.073, 0.073, 0.073), 
+	ShellMeshID = 9636571705, 
+	ShellTextureID = 9636571954, 
+	DisappearTime = 10, 
+	BulletShellParticles = true, 
+	ShotgunEnabled = false, 
+	BulletPerShot = 8, 
+	ShotgunPump = false, 
+	ShotgunPumpinAnimationID = nil, 
+	ShotgunPumpinAnimationSpeed = 1, 
+	ShotgunPumpinSpeed = 0.5, 
+	VMShotgunPumpinAnimationID = nil, 
+	VMShotgunPumpinAnimationSpeed = 1, 
+	SecondaryShotgunPump = false, 
+	SecondaryShotgunPumpinAnimationID = nil, 
+	SecondaryShotgunPumpinAnimationSpeed = 1, 
+	SecondaryShotgunPumpinSpeed = 0.5, 
+	VMSecondaryShotgunPumpinAnimationID = nil, 
+	VMSecondaryShotgunPumpinAnimationSpeed = 1, 
+	ShotgunReload = false, 
+	ShotgunClipinAnimationID = nil, 
+	ShotgunClipinAnimationSpeed = 1, 
+	ShellClipinSpeed = 0.5, 
+	PreShotgunReload = false, 
+	PreShotgunReloadAnimationID = nil, 
+	PreShotgunReloadAnimationSpeed = 1, 
+	PreShotgunReloadSpeed = 0.5, 
+	VMShotgunClipinAnimationID = nil, 
+	VMShotgunClipinAnimationSpeed = 1, 
+	VMPreShotgunReloadAnimationID = nil, 
+	VMPreShotgunReloadAnimationSpeed = 1, 
+	ShotgunPattern = false, 
+	SpreadPattern = { { 0, -0.4 }, { -0.35, 0.2 }, { 0.35, 0.2 }, { 0, 1 }, { 0.95, 0.31 }, { 0.59, -0.81 }, { -0.59, -0.81 }, { -0.95, 0.31 } }, 
+	BurstFireEnabled = false, 
+	BulletPerBurst = 3, 
+	BurstRate = 0.075, 
+	SelectiveFireEnabled = false, 
+	FireModes = { 1, 2, 3, true }, 
+	FireRates = { 0.125, 0.5, 0.5, 0.1 }, 
+	BurstRates = { 0, 0.075, 0.075, 0 }, 
+	FireModeTexts = { "SEMI-AUTO", "2-ROUND-BURST", "3-ROUND-BURST", "AUTO" }, 
+	SwitchTime = 0.25, 
+	SwitchAnimationID = nil, 
+	SwitchAnimationSpeed = 1, 
+	VMSwitchAnimationID = nil, 
+	VMSwitchAnimationSpeed = 1, 
+	ExplosiveEnabled = false, 
+	ExplosionSoundEnabled = true, 
+	ExplosionSoundIDs = { 163064102 }, 
+	ExplosionSoundVolume = 1, 
+	ExplosionSoundPitchMin = 1, 
+	ExplosionSoundPitchMax = 1.5, 
+	ExplosionRadius = 8, 
+	DamageBasedOnDistance = false, 
+	SelfDamage = false, 
+	SelfDamageRedution = 0.5, 
+	ReduceSelfDamageOnAirOnly = false, 
+	CustomExplosion = false, 
+	ExplosionKnockback = false, 
+	ExplosionKnockbackPower = 50, 
+	ExplosionKnockbackMultiplierOnPlayer = 2, 
+	ExplosionKnockbackMultiplierOnTarget = 2, 
+	ExplosionCraterEnabled = true, 
+	ExplosionCraterSize = 3, 
+	ExplosionCraterTexture = { 53875997 }, 
+	ExplosionCraterVisibleTime = 3, 
+	ExplosionCraterFadeTime = 1, 
+	ExplosionCraterPartColor = false, 
+	BulletSpeed = 2000, 
+	BulletAcceleration = Vector3.new(0, 0, 0), 
+	MotionBlur = true, 
+	BulletSize = 0.4, 
+	BulletBloom = 0.005, 
+	BulletBrightness = 400, 
+	WindSpeed = 10, 
+	WindResistance = 1, 
+	BulletLifetime = 1, 
+	VisibleBullet = true, 
+	BulletType = "Normal", 
+	ProjectileType = "None", 
+	CanSpinPart = false, 
+	SpinX = 3, 
+	SpinY = 0, 
+	SpinZ = 0, 
+	Homing = false, 
+	HomingDistance = 250, 
+	TurnRatePerSecond = 1, 
+	HomeThroughWall = false, 
+	LockOnOnHovering = false, 
+	LockOnRadius = 10, 
+	HitscanMode = false, 
+	ChargedShotEnabled = false, 
+	ChargingTime = 1, 
+	MinigunEnabled = false, 
+	DelayBeforeFiring = 1, 
+	DelayAfterFiring = 1, 
+	MinigunRevUpAnimationID = nil, 
+	MinigunRevUpAnimationSpeed = 1, 
+	MinigunRevDownAnimationID = nil, 
+	MinigunRevDownAnimationSpeed = 1, 
+	VMMinigunRevUpAnimationID = nil, 
+	VMMinigunRevUpAnimationSpeed = 1, 
+	VMMinigunRevDownAnimationID = nil, 
+	VMMinigunRevDownAnimationSpeed = 1, 
+	BatteryEnabled = false, 
+	MaxHeat = 100, 
+	TimeBeforeCooldown = 3, 
+	CooldownTime = 0.05, 
+	CooldownRate = 1, 
+	OverheatTime = 2.5, 
+	HeatPerFireMin = 7, 
+	HeatPerFireMax = 8, 
+	MinDepletion = 2, 
+	MaxDepletion = 4, 
+	ShotsForDepletion = 12, 
+	OverheatAnimationID = nil, 
+	OverheatAnimationSpeed = 1, 
+	VMOverheatAnimationID = nil, 
+	VMOverheatAnimationSpeed = 1, 
+	Knockback = 0, 
+	Lifesteal = 0, 
+	Debuff = false, 
+	DebuffName = "Zombify", 
+	DebuffChance = 100, 
+	DualFireEnabled = false, 
+	PenetrationType = "HumanoidPenetration", 
+	PenetrationDepth = 0, 
+	PenetrationAmount = 1, 
+	MaterialPenetration = {
+		Plastic = 1.5, 
+		Wood = 1, 
+		Slate = 0.5, 
+		Concrete = 0.5, 
+		CorrodedMetal = 0.2, 
+		DiamondPlate = 0.2, 
+		Foil = 1.5, 
+		Grass = 1.5, 
+		Ice = 1, 
+		Marble = 1, 
+		Granite = 1, 
+		Brick = 0.5, 
+		Pebble = 1, 
+		Sand = 2, 
+		Fabric = 2, 
+		SmoothPlastic = 1.5, 
+		Metal = 0.3, 
+		WoodPlanks = 1.25, 
+		Cobblestone = 1, 
+		Rock = 1, 
+		Glacier = 1, 
+		Snow = 2, 
+		Sandstone = 2, 
+		Mud = 1.5, 
+		Basalt = 0.5, 
+		Ground = 1, 
+		CrackedLava = 0.25, 
+		Neon = 0.25, 
+		Glass = 1.5, 
+		Asphalt = 0.5, 
+		LeafyGrass = 1.5, 
+		Salt = 1, 
+		Limestone = 1, 
+		Pavement = 1, 
+		ForceField = 0.5
+	}, 
+	RicochetAmount = 0, 
+	BounceElasticity = 1, 
+	FrictionConstant = 0, 
+	NoExplosionWhileBouncing = false, 
+	StopBouncingOnHitHumanoid = false, 
+	SuperRicochet = false, 
+	TouchEventOnTimeout = false, 
+	SelfKnockback = false, 
+	SelfKnockbackPower = 50, 
+	SelfKnockbackMultiplier = 2, 
+	SelfKnockbackRedution = 0.8, 
+	ProjectileMotion = false, 
+	FriendlyFire = false, 
+	ChargedShotAdvanceEnabled = false, 
+	AdvancedChargingTime = 5, 
+	Level1ChargingTime = 1, 
+	Level2ChargingTime = 2, 
+	ChargingSoundIncreasePitch = true, 
+	ChargingSoundPitchRange = { 1, 1.5 }, 
+	ChargingAnimationEnabled = false, 
+	ChargingAnimationID = nil, 
+	ChargingAnimationSpeed = 1, 
+	AimChargingAnimationID = nil, 
+	AimChargingAnimationSpeed = 1, 
+	VMChargingAnimationID = nil, 
+	VMChargingAnimationSpeed = 1, 
+	ChargeAlterTable = {}, 
+	HoldAndReleaseEnabled = false, 
+	HoldingTime = 1, 
+	AnimationKeyframes = {}, 
+	VMAnimationKeyframes = {}
+]]
