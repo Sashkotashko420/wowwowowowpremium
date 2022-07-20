@@ -10,6 +10,10 @@ elseif game.PlaceId == 7277614831 then
 
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Sashkotashko420/wowwowowowpremium/main/CandyEatingSimulator'))()
 
+elseif game.PlaceId == 9157605735 then
+
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Sashkotashko420/wowwowowowpremium/main/MiscGunTestX'))()
+
 end
 
 local Data = {
