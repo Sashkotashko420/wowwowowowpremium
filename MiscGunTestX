@@ -51,15 +51,6 @@ local function lightmod()
 	gunmod.FireModes = { 1, 2, 3, true }
 	gunmod.FireModeTexts = { "SEMI-AUTO", "2-ROUND-BURST", "3-ROUND-BURST", "AUTO" }
 end
-
-if player.Character.Humanoid.Health == 0 then
-	
-	player.CharacterAdded:Connect(function(character)
-		if setlightonspawn == "true" then
-		lightmod()
-		end
-	end)
-end
 	
 
 local function setammo(ammo)
