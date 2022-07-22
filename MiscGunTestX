@@ -7,10 +7,9 @@ local setlightonspawn = false
 local recs = 0
 
 local GUI = Mercury:Create{
-    Name = "MiscGunTest GunMod | More to be added. | V1.0.0",
-    Size = UDim2.fromOffset(600, 400),
+    Name = "| Oblivion Hub |",
     Theme = Mercury.Themes.Dark,
-    Link = "https://github.com/deeeity/mercury-lib"
+    Link = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 }
 
 local Tab = GUI:Tab{
